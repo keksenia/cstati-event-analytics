@@ -1,1 +1,2 @@
-
+event_id,metric_name,old_value,new_value,correction_type,confidence,notes
+antiposvyat_2025,attendees,,,"manual_correction_needed",medium,"Фактическая явка была выше, чем отражено в данных; нужно уточнить корректное значение"
