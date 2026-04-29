@@ -1,1 +1,19 @@
-
+event_id,event_name,event_family,event_year,event_date,event_season,event_type,is_paid,approx_capacity,target_audience,format,strategic_role,notes
+posvyat_2023,Посвят'23,Посвят,2023,,autumn,onboarding,,300-500,first-year students,overnight trip,acquisition,Посвящение в студенты; выезд с ночевкой в Подмосковье; квесты и вечерняя программа
+antiposvyat_2023,Антипосвят'23,Антипосвят,2023,,autumn,party,,150-200,senior students,offline party,retention/community,Мероприятие от первокурсников для старшекурсников
+ball_fkn_2024,Бал ФКН'24,Бал ФКН,2024,,spring,party,,unknown,HSE FCS students,offline party,community,Весенний бал ФКН
+anniversary_2024,ANNIVERSARY'24,Anniversary,2024,,unknown,party,,unknown,cstati community,offline party,community,Единоразовая тусовка в честь юбилея cstati
+ballmer_peak_2024,Ballmer Peak'24,Ballmer Peak,2024,,spring,hackathon,,unknown,students,mini hackathon,engagement,Мини-хахатон
+collab_2024,Коллаб'24,Коллаб,2024,,unknown,collaboration,,unknown,students,offline event,community,Коллаборационное мероприятие; требуется отдельный loader из-за структуры данных
+nastolki_2024,Настолки'24,Настолки,2024,,unknown,small event,,unknown,students,board games,engagement,Мини-мероприятие по настольным играм
+neyrorave_2024,Нейрорейв,Нейрорейв,2024,,spring,party,FALSE,300,students,offline rave,acquisition/reach,Бесплатная тусовка-коллаборация с ФКН; рейв и светомузыка
+pohod_2024,Поход'24,Поход,2024,,summer,outdoor trip,,200,students/community,camping trip,retention/community,Поход с палатками на 1-2 дня
+ekvator_2024,Экватор'24,Экватор,2024,,summer,party,,100-300,second-year students,offline party,retention/core community,Мероприятие в конце июня для второкурсников как середина учебной жизни
+glanz_2024,GLANZ,GLANZ,2024,,summer,party,,200,students,offline party,community,Летняя тусовка
+zv_2025,ЗВ'25,Зимний выезд,2025,,winter,overnight trip,,100,students/community,winter trip,retention/community,Зимний выезд с активностями; проверить alias с ЗВ'24 в сводной
+posvyat_2025,Посвят'25,Посвят,2025,,autumn,onboarding,,300-500,first-year students,overnight trip,acquisition,Главный onboarding-event для первокурсников
+antiposvyat_2025,Антипосвят'25,Антипосвят,2025,,autumn,party,,150-200,senior students,offline party,retention/community,Attendance в данных занижен; нужна корректировка в attendance_corrections.csv
+csfest_2025,CSFEST'25,CSFEST,2025,,spring,university event,,500,students/teachers,offline show,reach/community,Коллаборация студентов и преподавателей; проводится в апреле
+pohod_2025,Поход'25,Поход,2025,,summer,outdoor trip,,200,students/community,camping trip,retention/community,Поход с палатками и активностями
+ekvator_2025,Экватор'25,Экватор,2025,,summer,party,,100-300,second-year students,offline party,retention/core community,Мероприятие в конце июня для второкурсников
+zv_2026,ЗВ'26,Зимний выезд,2026,,winter,overnight trip,,100,students/community,winter trip,retention/community,Зимний выезд с активностями
