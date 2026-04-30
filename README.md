@@ -166,3 +166,126 @@ cstati event portfolio можно описать как систему из дв
 
 ```text
 onboarding event → community event → seasonal event
+Метрики для отслеживания: event_transition_rate, family_transition_rate.
+P2 — Special loaders
+Сделать отдельную обработку для событий со сложной структурой данных, например:
+Коллаб'24;
+Бал ФКН'24.
+Это позволит честнее учитывать их в clean metrics.
+
+Методология
+Проект состоит из пяти аналитических этапов:
+Notebook
+Purpose
+01_data_audit.ipynb
+Первичный аудит файлов, колонок, пропусков, дублей и manual-справочников
+02_identity_resolution.ipynb
+Связывание участников между событиями и построение clean identity layer
+03_portfolio_overview.ipynb
+Event-level, family-level, repeat и transition metrics
+04_deep_dive_events.ipynb
+Глубокий разбор ключевых событий
+05_recommendations.ipynb
+Финальные выводы, рекомендации и README-ready summary
+
+
+Identity resolution
+Для анализа повторного участия нужно связать участников между событиями.
+Использовались нормализованные идентификаторы:
+Telegram;
+телефон;
+email;
+ФИО + группа / программа / курс.
+Для каждой строки строится participant_key_internal, а затем приватный hash.
+Confidence levels
+Level
+Logic
+high
+Telegram, телефон или email
+medium
+ФИО + группа / программа / курс
+low
+только ФИО
+missing
+нет пригодного идентификатора
+
+Для retention и journeys используется строгий clean layer:
+clean_identity_df = identity_records_df[
+    (identity_records_df["is_auxiliary_source"] == False)
+    & (identity_records_df["identity_conflict_flag"] == False)
+    & (identity_records_df["identity_confidence"].isin(["high", "medium"]))
+].copy()
+
+Такой подход снижает риск false-positive stitching.
+
+Privacy
+Raw-данные с персональными данными не публикуются.
+В публичный репозиторий не попадают:
+ФИО участников;
+Telegram;
+телефоны;
+email;
+raw CSV-файлы;
+private identity layer;
+intermediate private tables.
+В репозитории могут публиковаться только:
+код;
+методология;
+агрегированные метрики;
+обезличенные outputs;
+графики;
+synthetic/sample data.
+Подробнее: docs/privacy.md
+Структура репозитория
+cstati-event-analytics/
+│
+├── README.md
+├── requirements.txt
+├── .env.example
+├── .gitignore
+│
+├── manual/
+│   ├── event_metadata.csv
+│   ├── event_aliases.csv
+│   └── attendance_corrections.csv
+│
+├── notebooks/
+│   ├── 01_data_audit.ipynb
+│   ├── 02_identity_resolution.ipynb
+│   ├── 03_portfolio_overview.ipynb
+│   ├── 04_deep_dive_events.ipynb
+│   └── 05_recommendations.ipynb
+│
+├── src/
+│   ├── loaders.py
+│   ├── normalizers.py
+│   ├── identity_resolution.py
+│   ├── metrics.py
+│   ├── plots.py
+│   └── pipeline.py
+│
+├── sql/
+│   ├── staging/
+│   ├── marts/
+│   └── checks/
+│
+├── data/
+│   ├── processed_public/
+│   └── samples_public/
+│
+├── docs/
+│   ├── methodology.md
+│   ├── privacy.md
+│   └── figures/
+│
+└── dashboards/
+
+
+Кодовая структура
+Reusable logic вынесена в src/:
+loaders.py — загрузка raw/manual/processed таблиц;
+normalizers.py — нормализация ФИО, Telegram, телефона, email и названий событий;
+identity_resolution.py — participant stitching и identity conflict checks;
+metrics.py — event-level, family-level, retention и transition metrics;
+plots.py — функции визуализации;
+pipeline.py — skeleton будущего production pipeline.
