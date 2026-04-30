@@ -32,3 +32,35 @@
 ## Privacy
 
 Raw-файлы с персональными данными не публикуются. Для анализа retention и journeys персональные идентификаторы используются только во внутреннем private layer.
+
+
+
+# Методология
+## Цель анализа
+Проект рассматривает портфель мероприятий cstati как event-community product: систему событий, через которую организация привлекает, вовлекает и удерживает участников.
+## Основные аналитические слои
+1. Data audit
+2. Identity resolution
+3. Portfolio overview
+4. Deep dive events
+5. Product recommendations
+## Source of truth
+В проекте используются несколько типов источников:
+- отдельные raw CSV по мероприятиям;
+- `Сводная.csv` как backbone-источник;
+- `Мероприятия.csv` как auxiliary/archive source;
+- manual-справочники для событий и корректировок.
+## Identity resolution
+Для связывания участников между событиями используются нормализованные идентификаторы:
+- Telegram;
+- телефон;
+- email;
+- ФИО + дополнительные признаки.
+Для чувствительных метрик используется строгий clean identity layer.
+## Clean identity layer
+В clean layer попадают только строки, которые:
+```python
+(is_auxiliary_source == False)
+& (identity_conflict_flag == False)
+& (identity_confidence in ["high", "medium"])
+
