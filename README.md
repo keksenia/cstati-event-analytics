@@ -164,7 +164,7 @@ cstati event portfolio можно описать как систему из дв
 
 Пример:
 
-onboarding event → community event → seasonal event
+``` 
 Метрики для отслеживания: event_transition_rate, family_transition_rate.
 P2 — Special loaders
 Сделать отдельную обработку для событий со сложной структурой данных, например:
