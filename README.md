@@ -164,7 +164,6 @@ cstati event portfolio можно описать как систему из дв
 
 Пример:
 
-```text
 onboarding event → community event → seasonal event
 Метрики для отслеживания: event_transition_rate, family_transition_rate.
 P2 — Special loaders
@@ -289,3 +288,6 @@ identity_resolution.py — participant stitching и identity conflict checks;
 metrics.py — event-level, family-level, retention и transition metrics;
 plots.py — функции визуализации;
 pipeline.py — skeleton будущего production pipeline.
+
+
+streamlit run dashboards/streamlit_app.py
